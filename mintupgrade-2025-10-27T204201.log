@@ -1,0 +1,171 @@
+Note: The APT repositories point towards the destination.
+
+Running check 'Phase 1: Preparation'
+=================
+APT Repositories:
+=================
+Repos:
+  No active apt repos in: /etc/apt/sources.list
+  Active apt repos in: /etc/apt/sources.list.d/docker.list
+    1: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+  No active apt repos in: /etc/apt/sources.list.d/linuxuprising-java-jammy.list
+  No active apt repos in: /etc/apt/sources.list.d/mongodb-org-7.0.list
+  No active apt repos in: /etc/apt/sources.list.d/ngrok.list
+  Active apt repos in: /etc/apt/sources.list.d/obsproject-obs-studio-jammy.list
+    1: deb [signed-by=/etc/apt/keyrings/obsproject-obs-studio-jammy.gpg] https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu jammy main
+  Active apt repos in: /etc/apt/sources.list.d/official-package-repositories.list
+    1: deb http://packages.linuxmint.com wilma main upstream import backport
+    2: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble main restricted universe multiverse
+    3: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates main restricted universe multiverse
+    4: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports main restricted universe multiverse
+    5: deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+=================
+
+Running check 'Linux Mint version'
+Check succeeded:  Linux Mint version
+
+Running check 'Power source'
+Check succeeded:  Power source
+
+Running check 'System snapshots'
+Check succeeded:  System snapshots
+
+Running check 'Held packages'
+Check succeeded:  Held packages
+
+Running check 'Package repositories'
+Mint repository last modified on 2025-10-21 13:55:38
+Check succeeded:  Package repositories
+
+Running check 'Phase 2: Simulation and download'
+=================
+APT Repositories:
+=================
+Repos:
+  No active apt repos in: /etc/apt/sources.list
+  Active apt repos in: /etc/apt/sources.list.d/docker.list
+    1: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+  No active apt repos in: /etc/apt/sources.list.d/linuxuprising-java-jammy.list
+  No active apt repos in: /etc/apt/sources.list.d/mongodb-org-7.0.list
+  No active apt repos in: /etc/apt/sources.list.d/ngrok.list
+  Active apt repos in: /etc/apt/sources.list.d/obsproject-obs-studio-jammy.list
+    1: deb [signed-by=/etc/apt/keyrings/obsproject-obs-studio-jammy.gpg] https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu jammy main
+  Active apt repos in: /etc/apt/sources.list.d/official-package-repositories.list
+    1: deb http://packages.linuxmint.com wilma main upstream import backport
+    2: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble main restricted universe multiverse
+    3: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates main restricted universe multiverse
+    4: deb https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports main restricted universe multiverse
+    5: deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+=================
+
+Running check 'Package repositories'
+Switching https://download.docker.com/linux/ubuntu to noble
+http://packages.linuxmint.com already points to wilma
+https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu already points to noble
+https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu already points to noble-updates
+https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu already points to noble-backports
+http://security.ubuntu.com/ubuntu/ already points to noble-security
+Switching https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu to noble
+Check succeeded:  Package repositories
+
+Running check 'APT cache'
+rm -rf /var/lib/apt/lists/*
+DEBIAN_PRIORITY=critical apt-get update
+Get:1 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble InRelease [256 kB]
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main i386 Packages [344 kB]
+Ign:4 http://packages.linuxmint.com wilma InRelease
+Get:5 https://download.docker.com/linux/ubuntu jammy InRelease [48.5 kB]
+Get:6 https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu jammy InRelease [18.1 kB]
+Get:7 http://packages.linuxmint.com wilma Release [27.6 kB]
+Get:8 https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu jammy/main amd64 Packages [1128 B]
+Get:9 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [58.1 kB]
+Get:10 https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu jammy/main Translation-en [160 B]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1267 kB]
+Get:12 http://packages.linuxmint.com wilma Release.gpg [833 B]
+Get:13 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates InRelease [126 kB]
+Get:14 http://packages.linuxmint.com wilma/main amd64 Packages [17.7 kB]
+Get:15 http://packages.linuxmint.com wilma/main i386 Packages [17.1 kB]
+Get:16 http://packages.linuxmint.com wilma/upstream amd64 Packages [51.3 kB]
+Get:17 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports InRelease [126 kB]
+Get:18 http://packages.linuxmint.com wilma/upstream i386 Packages [21.2 kB]
+Get:19 http://packages.linuxmint.com wilma/import amd64 Packages [5484 B]
+Get:20 http://packages.linuxmint.com wilma/import i386 Packages [3200 B]
+Get:21 http://packages.linuxmint.com wilma/backport i386 Packages [5644 B]
+Get:22 http://packages.linuxmint.com wilma/backport amd64 Packages [25.5 kB]
+Get:23 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/main i386 Packages [1041 kB]
+Get:24 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [209 kB]
+Get:25 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/main amd64 Packages [1401 kB]
+Get:26 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+Get:27 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [8984 B]
+Get:28 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2075 kB]
+Get:29 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/main Translation-en [513 kB]
+Get:30 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/main amd64 Components [464 kB]
+Get:31 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/main amd64 c-n-f Metadata [30.5 kB]
+Get:32 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/restricted i386 Packages [14.7 kB]
+Get:33 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/restricted amd64 Packages [93.9 kB]
+Get:34 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/restricted Translation-en [18.7 kB]
+Get:35 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/restricted amd64 c-n-f Metadata [416 B]
+Get:36 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/universe i386 Packages [8514 kB]
+Get:37 http://security.ubuntu.com/ubuntu noble-security/restricted i386 Packages [21.9 kB]
+Get:38 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [468 kB]
+Get:39 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Get:40 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [500 B]
+Get:41 http://security.ubuntu.com/ubuntu noble-security/universe i386 Packages [562 kB]
+Get:42 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [904 kB]
+Get:43 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [202 kB]
+Get:44 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.2 kB]
+Get:45 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [19.3 kB]
+Get:46 http://security.ubuntu.com/ubuntu noble-security/multiverse i386 Packages [6072 B]
+Get:47 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [27.4 kB]
+Get:48 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [5708 B]
+Get:49 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
+Get:50 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [384 B]
+Get:51 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/universe amd64 Packages [15.0 MB]
+Get:52 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/universe Translation-en [5982 kB]
+Get:53 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/universe amd64 Components [3871 kB]
+Get:54 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/universe amd64 c-n-f Metadata [301 kB]
+Get:55 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/multiverse amd64 Packages [269 kB]
+Get:56 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/multiverse i386 Packages [126 kB]
+Get:57 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/multiverse Translation-en [118 kB]
+Get:58 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/multiverse amd64 Components [35.0 kB]
+Get:59 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble/multiverse amd64 c-n-f Metadata [8328 B]
+Get:60 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/main i386 Packages [542 kB]
+Get:61 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/main amd64 Packages [1543 kB]
+Get:62 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/main Translation-en [292 kB]
+Get:63 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/main amd64 Components [175 kB]
+Get:64 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/main amd64 c-n-f Metadata [15.4 kB]
+Get:65 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/restricted amd64 Packages [2175 kB]
+Get:66 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/restricted i386 Packages [24.2 kB]
+Get:67 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/restricted Translation-en [490 kB]
+Get:68 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/restricted amd64 Components [212 B]
+Get:69 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/restricted amd64 c-n-f Metadata [516 B]
+Get:70 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/universe amd64 Packages [1496 kB]
+Get:71 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/universe i386 Packages [988 kB]
+Get:72 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/universe Translation-en [301 kB]
+Get:73 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/universe amd64 Components [377 kB]
+Get:74 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/universe amd64 c-n-f Metadata [31.3 kB]
+Get:75 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/multiverse i386 Packages [7236 B]
+Get:76 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/multiverse amd64 Packages [30.3 kB]
+Get:77 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/multiverse Translation-en [5564 B]
+Get:78 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:79 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [484 B]
+Get:80 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/main i386 Packages [33.0 kB]
+Get:81 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/main amd64 Packages [40.4 kB]
+Get:82 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/main Translation-en [9208 B]
+Get:83 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/main amd64 Components [7156 B]
+Get:84 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/main amd64 c-n-f Metadata [368 B]
+Get:85 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/restricted amd64 Components [212 B]
+Get:86 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:87 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/universe amd64 Packages [28.9 kB]
+Get:88 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/universe i386 Packages [15.8 kB]
+Get:89 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/universe Translation-en [17.5 kB]
+Get:90 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/universe amd64 Components [11.0 kB]
+Get:91 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/universe amd64 c-n-f Metadata [1444 B]
+Get:92 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Get:93 https://mirrors.nxtgen.com/ubuntu-mirror/ubuntu noble-backports/multiverse amd64 c-n-f Metadata [116 B]
+Fetched 53.6 MB in 5min 48s (154 kB/s)
+Reading package lists...
+Check succeeded:  APT cache
+
+Running check 'Upgrade simulation'
