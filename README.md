@@ -1,37 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+note:"this readme is generated using LLM"
 
-## Getting Started
+# 🧩 Optical Rule – Interactive Optical Component Editor
 
-First, run the development server:
+This project is an interactive **optical design simulator** built using **Next.js**, **React Konva**, and **Tailwind CSS**.  
+It allows users to **drag and drop optical components** (like lenses, beam splitters, and lasers) onto a canvas, modify their properties, and save or load designs as JSON files.
+
+---
+
+## 🚀 Features
+
+- 🖱️ **Drag & Drop** optical components from a side panel onto the Konva canvas
+- ⚙️ **Dynamic Property Editing** — Adjust parameters like _focal length_, _intensity_, or _reflectivity_ in real time
+- 💾 **Save and Load Designs** — Export your setup as a JSON file or import it back
+- 🧱 **Resizable and Rotatable Components** — Rotate and scale elements using Konva’s built-in transformer
+- 🧩 **Custom Component Attributes** depending on the selected optical element
+- 💡 Built with modern web stack: **Next.js**, **React Konva**, **Tailwind CSS**
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool             | Purpose                                  |
+| ---------------- | ---------------------------------------- |
+| **Next.js**      | React framework for building the web app |
+| **React Konva**  | Canvas-based interactive graphics        |
+| **Tailwind CSS** | Utility-first CSS framework for styling  |
+
+---
+
+## 🧰 Installation and Setup
+
+### 1. Clone the Repository
 
 ```bash
+git clone https://github.com/25sahilsingh/opticalrule.git
+cd opticalrule
+2. Install Dependencies
+bash
+Copy code
+npm install
+3. Run the Development Server
+bash
+Copy code
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Then open http://localhost:3000 in your browser.
+
+🧩 How It Works
+🪄 Add Components
+Drag any optical element (like lens, beam splitter, etc.) from the left panel and drop it on the canvas.
+
+⚙️ Edit Properties
+Select a component to open the Properties Panel (on the right).
+
+Modify numeric values such as position, rotation, or optical parameters.
+
+💾 Save or Load Setup
+Click Download JSON to save the current layout.
+
+Click Upload JSON to import a saved configuration.
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# opticalrule
