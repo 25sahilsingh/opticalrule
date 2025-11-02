@@ -245,7 +245,7 @@ const App = () => {
           ondelete={deleteimageitem}
         />
       </div>
-      <div className="flex m-2 absolute right-0 bottom-0 ">
+      <div className="m-2 absolute right-0 bottom-0 ">
         <a
           href={URL.createObjectURL(
             new Blob([JSON.stringify(images)], {
@@ -258,9 +258,9 @@ const App = () => {
             Download json
           </button>
         </a>
-        <div className="bg-yellow-500 rounded p-2 m-2" htmlFor="uploadinput">
+        <label className="bg-yellow-500 rounded p-2.5" htmlFor="uploadinput">
           Upload json
-        </div>
+        </label>
         <input
           id="uploadinput"
           type="file"
