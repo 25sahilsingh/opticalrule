@@ -8,15 +8,12 @@ import {
   Transformer,
 } from "react-konva";
 import useImage from "use-image";
-import NextImage from "next/image";
+import Image from "next/image";
 
-// Component that renders each image on the canvas
 const URLImage = ({ image, isSelected, onSelect, onChange }) => {
   const [img] = useImage(image.src);
-  const shapeRef = useRef();
+  const shapeRef = useRef("");
   const trRef = useRef();
-
-  // Attach transformer when selected
   useEffect(() => {
     if (isSelected && trRef.current && shapeRef.current) {
       trRef.current.nodes([shapeRef.current]);
@@ -66,6 +63,42 @@ const URLImage = ({ image, isSelected, onSelect, onChange }) => {
     </>
   );
 };
+const PropertiesPanel = ({ selected, onChange, ondelete }) => {
+  if (!selected) {
+    return "";
+  }
+  const ignoreKeys = ["src", "id"];
+  const entries = Object.entries(selected).filter(
+    ([key]) => !ignoreKeys.includes(key)
+  );
+
+  return (
+    <div className="p-4 flex flex-col gap-3">
+      <h2 className="font-bold text-lg">Properties</h2>
+      {entries.map(([key, value]) => (
+        <label key={key} className="flex justify-between items-center">
+          <span className="capitalize">{key.replaceAll("_", " ")}:</span>
+          <input
+            type="number"
+            className="border px-2 w-24"
+            value={value ?? ""}
+            onChange={(e) =>
+              onChange({ attribute: key, value: e.target.value })
+            }
+          />
+        </label>
+      ))}
+      <div className="flex justify-end">
+        <button
+          className="justify-end flex bg-red-500 rounded p-2"
+          onClick={ondelete}
+        >
+          delete
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const App = () => {
   const stageRef = useRef();
@@ -74,7 +107,6 @@ const App = () => {
   const [currentImage, setCurrentImage] = useState(null);
   const [images, setImages] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
-  const [rotationvalue, setrotationvalue] = useState();
 
   // Set window size once on mount
   useEffect(() => {
@@ -83,21 +115,49 @@ const App = () => {
 
   // Add image on drop
   const handleDrop = (e) => {
+    const customproperty = () => {
+      if (currentImage == "b_bsp") {
+        return { transparancy_x: 0.5, transparancy_negativex: 0.5 };
+      } else if (currentImage == "b_bspcube") {
+        return { reflectivity: 0.99 };
+      } else if (currentImage == "b_lens2") {
+        return { focal_lenght: 200 };
+      } else if (currentImage == "b_lens3") {
+        return { focal_lenght: 200 };
+      } else if (currentImage == "e_pd1") {
+        return {};
+      } else if (currentImage == "c_laser2") {
+        return { intensity: 0.9 };
+      }
+    };
     e.preventDefault();
     stageRef.current.setPointersPositions(e);
     const pos = stageRef.current.getPointerPosition();
+    const extraproperty = customproperty();
+
     setImages((prev) =>
       prev.concat([
         {
           ...pos,
-          src: currentImage,
+          src: `/needed_components/${currentImage}.png`,
           id: `${Date.now()}`,
           rotation: 0,
+          ...extraproperty,
         },
       ])
     );
   };
-
+  const changeimagesvalue = ({ attribute, value }) => {
+    setImages((prevImages) =>
+      prevImages.map((img) =>
+        img.id === selectedId ? { ...img, [attribute]: Number(value) } : img
+      )
+    );
+  };
+  const deleteimageitem = () => {
+    setImages(images.filter((e) => e.id != selectedId));
+    setSelectedId(null);
+  };
   return (
     <div className="flex h-screen relative">
       {/* ---- Left Konva Stage ---- */}
@@ -124,7 +184,9 @@ const App = () => {
                 key={image.id}
                 image={image}
                 isSelected={image.id === selectedId}
-                onSelect={() => setSelectedId(image.id)}
+                onSelect={() => {
+                  setSelectedId(image.id);
+                }}
                 onChange={(newAttrs) => {
                   setImages((prev) =>
                     prev.map((img) => (img.id === image.id ? newAttrs : img))
@@ -146,7 +208,7 @@ const App = () => {
       <div className="h-full absolute ">
         {["b_bsp", "b_bspcube", "b_lens2", "b_lens3", "e_pd1", "c_laser2"].map(
           (name) => (
-            <NextImage
+            <Image
               key={name}
               className="m-2.5"
               src={`/needed_components/${name}.png`}
@@ -154,12 +216,17 @@ const App = () => {
               width={divideWidth - 20}
               height={divideWidth - 20}
               draggable
-              onDragStart={() =>
-                setCurrentImage(`/needed_components/${name}.png`)
-              }
+              onDragStart={() => setCurrentImage(name)}
             />
           )
         )}
+      </div>
+      <div className=" absolute right-0 w-125 h-full">
+        <PropertiesPanel
+          selected={images.find((e) => e.id === selectedId)}
+          onChange={changeimagesvalue}
+          ondelete={deleteimageitem}
+        />
       </div>
     </div>
   );
