@@ -68,7 +68,7 @@ const PropertiesPanel = ({ selected, onChange, ondelete }) => {
   if (!selected) {
     return "";
   }
-  const ignoreKeys = ["src", "id"];
+  const ignoreKeys = ["src", "id", "width", "height"];
   const entries = Object.entries(selected).filter(
     ([key]) => !ignoreKeys.includes(key)
   );
