@@ -9,6 +9,7 @@ import {
 } from "react-konva";
 import useImage from "use-image";
 import Image from "next/image";
+import Link from "next/link";
 
 const URLImage = ({ image, isSelected, onSelect, onChange }) => {
   const [img] = useImage(image.src);
@@ -88,12 +89,12 @@ const PropertiesPanel = ({ selected, onChange, ondelete }) => {
           />
         </label>
       ))}
-      <div className="flex justify-end">
+      <div className="flex justify-end h-full">
         <button
           className="justify-end flex bg-red-500 rounded p-2"
           onClick={ondelete}
         >
-          delete
+          Delete
         </button>
       </div>
     </div>
@@ -102,7 +103,7 @@ const PropertiesPanel = ({ selected, onChange, ondelete }) => {
 
 const App = () => {
   const stageRef = useRef();
-  const [Window, setWindow] = useState({ width: 0, height: 0 });
+  const [Window, setWindow] = useState({ innerWidth: 0, innerHeight: 0 });
   const divideWidth = 100;
   const [currentImage, setCurrentImage] = useState(null);
   const [images, setImages] = useState([]);
@@ -110,7 +111,10 @@ const App = () => {
 
   // Set window size once on mount
   useEffect(() => {
-    setWindow({ width: window.innerWidth, height: window.innerHeight });
+    setWindow({
+      innerWidth: window.innerWidth,
+      innerHeight: window.innerHeight,
+    });
   }, []);
 
   // Add image on drop
@@ -158,6 +162,19 @@ const App = () => {
     setImages(images.filter((e) => e.id != selectedId));
     setSelectedId(null);
   };
+
+  const uploadJSON = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      setImages(JSON.parse(text));
+    } catch {
+      alert("Invalid JSON file!");
+    }
+  };
+  if (!Window.innerWidth || !Window.innerHeight) return null;
   return (
     <div className="flex h-screen relative">
       {/* ---- Left Konva Stage ---- */}
@@ -168,8 +185,8 @@ const App = () => {
       >
         <Stage
           ref={stageRef}
-          width={Window.width}
-          height={Window.height}
+          width={Window.innerWidth}
+          height={Window.innerHeight}
           onMouseDown={(e) => {
             // Deselect when clicking empty area
             const clickedOnEmpty = e.target === e.target.getStage();
@@ -177,7 +194,7 @@ const App = () => {
           }}
         >
           <Layer>
-            <Rect width={divideWidth} height={Window.height} fill="grey" />
+            <Rect width={divideWidth} height={Window.innerHeight} fill="grey" />
 
             {images.map((image) => (
               <URLImage
@@ -195,9 +212,9 @@ const App = () => {
               />
             ))}
             <Rect
-              x={Window.width - 500}
+              x={Window.innerWidth - 500}
               width={500}
-              height={Window.height}
+              height={Window.innerHeight}
               fill="grey"
             />
           </Layer>
@@ -227,6 +244,30 @@ const App = () => {
           onChange={changeimagesvalue}
           ondelete={deleteimageitem}
         />
+      </div>
+      <div className="flex m-2 absolute right-0 bottom-0 ">
+        <a
+          href={URL.createObjectURL(
+            new Blob([JSON.stringify(images)], {
+              type: "application/json",
+            })
+          )}
+          download="images.json"
+        >
+          <button className=" bg-green-500 rounded p-2 m-2">
+            Download json
+          </button>
+        </a>
+        <div className="bg-yellow-500 rounded p-2 m-2" htmlFor="uploadinput">
+          Upload json
+        </div>
+        <input
+          id="uploadinput"
+          type="file"
+          accept="application/json"
+          onChange={uploadJSON}
+          className="hidden"
+        ></input>
       </div>
     </div>
   );
