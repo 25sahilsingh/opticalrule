@@ -1,6 +1,8 @@
 "use client";
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Line,
   Stage,
   Layer,
   Rect,
@@ -9,10 +11,9 @@ import {
 } from "react-konva";
 import useImage from "use-image";
 import Image from "next/image";
-import Link from "next/link";
 
 const URLImage = ({ image, isSelected, onSelect, onChange }) => {
-  const [img] = useImage(image.src);
+  const [img] = useImage(`/needed_components/${image.src}.png`);
   const shapeRef = useRef("");
   const trRef = useRef();
   useEffect(() => {
@@ -21,7 +22,6 @@ const URLImage = ({ image, isSelected, onSelect, onChange }) => {
       trRef.current.getLayer().batchDraw();
     }
   }, [isSelected]);
-
   return (
     <>
       <KonvaImage
@@ -105,9 +105,11 @@ const App = () => {
   const stageRef = useRef();
   const [Window, setWindow] = useState({ innerWidth: 0, innerHeight: 0 });
   const divideWidth = 100;
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentImage, setCurrentImage] = useState("");
   const [images, setImages] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+  const [similuation, setSimulation] = useState([]);
+  const [img] = useImage(`/needed_components/${currentImage}.png`);
 
   // Set window size once on mount
   useEffect(() => {
@@ -116,7 +118,14 @@ const App = () => {
       innerHeight: window.innerHeight,
     });
   }, []);
-
+  const handlesimulation = async () => {
+    const { data } = await axios.post("/api/handlecalculation", {
+      images: images,
+    });
+    setSimulation((prev) => [...prev, data.coodinate]);
+    console.log(similuation);
+    console.log(data.coodinate);
+  };
   // Add image on drop
   const handleDrop = (e) => {
     const customproperty = () => {
@@ -138,12 +147,13 @@ const App = () => {
     stageRef.current.setPointersPositions(e);
     const pos = stageRef.current.getPointerPosition();
     const extraproperty = customproperty();
-
     setImages((prev) =>
       prev.concat([
         {
           ...pos,
-          src: `/needed_components/${currentImage}.png`,
+          width: img.width / 2,
+          height: img.height / 2,
+          src: `${currentImage}`,
           id: `${Date.now()}`,
           rotation: 0,
           ...extraproperty,
@@ -194,6 +204,21 @@ const App = () => {
           }}
         >
           <Layer>
+            {similuation.map((e) => {
+              return (
+                <Line
+                  key={e.index}
+                  x={0}
+                  y={0}
+                  points={[e.x1, e.y1, e.x2, e.y2, 0, 0]}
+                  stroke="black"
+                  fillLinearGradientStartPoint={{ x: -50, y: -50 }}
+                  fillLinearGradientEndPoint={{ x: 50, y: 50 }}
+                  fillLinearGradientColorStops={[0, "red", 1, "yellow"]}
+                  draggable
+                />
+              );
+            })}
             <Rect width={divideWidth} height={Window.innerHeight} fill="grey" />
 
             {images.map((image) => (
@@ -244,6 +269,14 @@ const App = () => {
           onChange={changeimagesvalue}
           ondelete={deleteimageitem}
         />
+        <div className="m-4  flex ">
+          <button
+            onClick={handlesimulation}
+            className="bg-amber-500 p-2 rounded"
+          >
+            Simulate
+          </button>
+        </div>
       </div>
       <div className="m-2 absolute right-0 bottom-0 ">
         <a
